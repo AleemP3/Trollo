@@ -1,0 +1,37 @@
+<nav class="ui menu">
+    <%= link_to 'Add List', new_board_list_path(@board), class: "item" %>
+    <%= link_to 'Edit', edit_board_path(@board), class: "item" %>
+  <div class="right menu">
+    <%= link_to 'Lists', board_path(@board), class: "item" %>
+    <%= link_to 'Boards', boards_path, class: "item" %>
+  </div>
+</nav> 
+<h1 class="ui center aligned header"><%= @board.name %></h1>
+  <div class="ui center aligned header">
+<%= link_to 'Delete', board_path(@board), method: :delete, class: "ui red button" %>
+  </div>
+<hr />
+<br /> 
+
+<div class="ui grid">
+<% @lists.each do |list| %>
+<div class="four wide column">
+  <div class="ui card">
+    <h2>
+      <div class="ui center aligned">
+          <nav class="ui menu">
+              <%= link_to 'Add Task', new_board_list_path(@board), class: "ui blue button" %>
+              <%= link_to 'Edit List', edit_board_list_path(@board,list), class: "ui green button" %>
+              <%= link_to 'Delete List', board_list_path(@board, list), method: :delete, class: "ui red button" %>
+          </nav> 
+        <%= list.title %>
+      </div>
+    </h2>
+    <br />
+  </div>
+</div>
+<% end %>
+</div>
+</div>
+
+

@@ -1,0 +1,23 @@
+<div class="ui container">
+<h1>Boards</h1>
+<%= link_to 'Add Board', new_board_path, class: "ui blue button" %>
+<hr />
+<br />
+<div class="ui grid">
+<% @boards.each do |board| %>
+<div class="four wide column">
+  <div class="ui card">
+    <h2>
+      <div class="ui center aligned">
+        <%= link_to board.name, board_path(board), class: "ui center aligned" %>
+      </div>
+    </h2>
+    <br />
+  </div>
+</div>
+<% end %>
+</div>
+</div>
+
+  
+
