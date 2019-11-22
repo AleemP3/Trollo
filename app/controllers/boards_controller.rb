@@ -6,7 +6,9 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @lists = List.all 
+    @lists = @board.lists
+     #binding.pry
+    #@tasks = @list.task 
   end
 
   def new
