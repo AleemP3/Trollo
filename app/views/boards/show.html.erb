@@ -4,36 +4,60 @@
   <div class="right menu">
     <%= link_to 'Lists', board_path(@board), class: "item" %>
     <%= link_to 'Boards', boards_path, class: "item" %>
+      <%= link_to 'Delete', board_path(@board), method: :delete, class: "item" %>
   </div>
 </nav> 
-<h1 class="ui center aligned header"><%= @board.name %></h1>
-  <div class="ui center aligned header">
-<%= link_to 'Delete', board_path(@board), method: :delete, class: "ui red button" %>
-  </div>
+<h1 class="ui center aligned header">
+  <%= @board.name %> 
+</h1> 
 <hr />
 <br /> 
 
 <div class="ui grid">
-<% @lists.each do |list| %>
+<% @lists.order(:priority).each do |list| %>
 <div class="four wide column">
-  <div class="ui card">
-    <h2>
+  <div class="ui card" id="test">
       <div class="ui center aligned">
           <nav class="ui menu">
-              <%= link_to 'Add Task', new_list_task_path(list), class: "ui blue button" %>
-              <%= link_to 'Edit List', edit_board_list_path(@board,list), class: "ui green button" %>
-              <%= link_to 'Delete List', board_list_path(@board, list), method: :delete, class: "ui red button" %>
+                <%= link_to 'Add Task', new_list_task_path(list), class: "item" %>
+                <%= link_to 'Edit List', edit_board_list_path(@board,list), class: "item" %>
+              <div class="ui right menu">
+                 <div class="item"><h4><%= list.priority %></h4></div>
+                <%= link_to 'Delete List', board_list_path(@board, list), method: :delete, class: "ui red button" %>
+              </div>
           </nav> 
-        <%= list.title %> 
-          <% list.tasks.each do |task| %>
-        <div class="ui card">
-          <%= task.title %>
-          <hr />
-          <%= task.description %> 
-        </div>
-        <% end %>
-      </div>
-    </h2>
+        <h2>
+          <%= list.title %> 
+        </h2>
+            <% list.tasks.order(:priority).each do |task| %>
+          <div class="ui segment" id="test2">
+            <div class="ui left aligned">
+                <h2><%= task.priority %></h2>
+                <hr />
+              <div class="ui green toggle checkbox">
+                <input type="checkbox" name="Complete">
+                <label>Complete</label>
+              </div>
+              <br />
+              <div class="ui yellow toggle checkbox">
+                <input type="checkbox" name="Inprogress">
+                <label>Inprogress</label>
+              </div>
+              <br />
+              <div class="ui red toggle checkbox" id="redcheck">
+                <input type="checkbox" name="Not Started">
+                <label>Not Started</label>
+              </div>
+            </div>
+            <div class="test3"><h4><%= task.title %></h4></div> 
+              <hr />
+              <%= task.description %> 
+              <div class="ui bottom right aligned">
+                <%= link_to 'Delete Task', list_task_path(list, task), method: :delete, class: "ui red button" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
     <br />
   </div>
 </div>

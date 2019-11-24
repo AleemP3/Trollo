@@ -1,1 +1,32 @@
 @import "semantic-ui"; 
+
+body {
+  background-color: aliceblue;
+}
+
+#test2 {
+  padding-left: 5px;
+  width: 383px;
+  border: solid #080808;
+}
+
+#test {
+  padding: 5px;
+  width: 600px;
+  border: solid #06110c;
+}
+
+.ui.green.toggle.checkbox input:focus:checked~.box:before,
+.ui.green.toggle.checkbox input:focus:checked~label:before {
+    background-color: green!important
+}
+
+.ui.yellow.toggle.checkbox input:focus:checked~.box:before,
+.ui.yellow.toggle.checkbox input:focus:checked~label:before {
+    background-color: yellow!important
+}
+
+.ui.red.toggle.checkbox input:focus:checked~.box:before,
+.ui.red.toggle.checkbox input:focus:checked~label:before {
+    background-color: red!important
+}

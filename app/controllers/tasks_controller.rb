@@ -28,7 +28,9 @@ class TasksController < ApplicationController
   end 
 
   def destroy 
+    @task = Task.find(params[:id])
     @task.destroy 
+    redirect_to board_path(@list.board_id)
   end 
 
   private 
@@ -42,7 +44,7 @@ class TasksController < ApplicationController
   # end 
 
   def task_params
-    params.require(:task).permit(:title, :description) 
+    params.require(:task).permit(:title, :description, :priority) 
   end 
 
 end
